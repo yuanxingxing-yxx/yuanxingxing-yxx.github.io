@@ -6,15 +6,63 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | Hexo</title>
+  <title>Ubuntu下搭建Hadoop的单机模式以及伪分布式模式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="环境准备创建Hadoop用户(可选)1.如果安装 Ubuntu 的时候不是用的 “hadoop” 用户，那么需要增加一个名为hadoop 的用户，首先按打开终端窗口（快捷键ctrl+alt+t），输入如下命令创建新用户 :创建hadoop用户。 1sudo useradd –m hadoop –s &#x2F;bin&#x2F;bash 2.上面这条命令创建了可以登陆的 hadoop 用户，并使用 &#x2F;bin&#x2F;bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下搭建Hadoop的单机模式以及伪分布式模式">
+<meta property="og:url" content="http://example.com/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="环境准备创建Hadoop用户(可选)1.如果安装 Ubuntu 的时候不是用的 “hadoop” 用户，那么需要增加一个名为hadoop 的用户，首先按打开终端窗口（快捷键ctrl+alt+t），输入如下命令创建新用户 :创建hadoop用户。 1sudo useradd –m hadoop –s &#x2F;bin&#x2F;bash 2.上面这条命令创建了可以登陆的 hadoop 用户，并使用 &#x2F;bin&#x2F;bash">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424160220932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424160338720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424160506102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424161052855.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424161237794.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424161602988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424161840649.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424162546196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424163213304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020042416364019.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424164357941.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424164620510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424164924757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424164955489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424165844732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424165935594.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424165534548.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424165615342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424170451980.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424172022330.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424171625868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424172509382.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424172636127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424173219925.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424173430996.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424173949652.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424175418218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424175508866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424181301239.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424181535235.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424182249798.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184150636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184253403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184525331.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184438375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184701640.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184745555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424184932703.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424185327146.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424185503726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424185539932.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424185929899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200424185611130.png">
+<meta property="article:published_time" content="2020-04-24T11:20:21.000Z">
+<meta property="article:modified_time" content="2021-02-23T05:53:04.642Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200424160220932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,76 +198,238 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Ubuntu下搭建Hadoop的单机模式以及伪分布式模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/17/blog1/" class="archive-article-date">
-  	<time datetime="2021-02-17T08:28:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/17/blog1/">blog1</a>
+    <h1 class="article-title" itemprop="name">
+      Ubuntu下搭建Hadoop的单机模式以及伪分布式模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/17/hello-world/" class="archive-article-date">
-  	<time datetime="2021-02-17T08:22:15.456Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-17</time>
+        
+        <a href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2020-04-24T11:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/17/hello-world/">Hello World</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="创建Hadoop用户-可选"><a href="#创建Hadoop用户-可选" class="headerlink" title="创建Hadoop用户(可选)"></a>创建Hadoop用户(可选)</h2><p>1.如果安装 Ubuntu 的时候不是用的 “hadoop” 用户，那么需要增加一个名为hadoop 的用户，首先按打开终端窗口（快捷键ctrl+alt+t），输入如下命令创建新用户 :<code>创建hadoop用户</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd –m hadoop –s /bin/bash</span><br></pre></td></tr></table></figure>
+<p>2.上面这条命令创建了可以登陆的 hadoop 用户，并使用 /bin/bash 作为 shell 接着使用如下命令设置密码，可简单设置为 hadoop，按提示输入两次密码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd hadoop</span><br></pre></td></tr></table></figure>
+<p>3.可为 hadoop 用户增加管理员权限，方便部署，避免一些对新手来说比较棘 手的权限问题:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser hadoop sudo</span><br></pre></td></tr></table></figure>
+<h2 id="SSH登录权限设置"><a href="#SSH登录权限设置" class="headerlink" title="SSH登录权限设置"></a>SSH登录权限设置</h2><p>1.SSH简介<br>SSH 为 Secure Shell 的缩写，是建立在应用层和传输层基础上的安全协议。 SSH 是目前较可靠、专为远程登录会话和其他网络服务提供安全性的协议。 利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是 UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。 SSH是由客 户端和服务端的软件组成，服务端是一个守护进程(daemon)，它在后台运 行并响应来自客户端的连接请求，客户端包含ssh程序以及像scp(远程拷 贝)、slogin(远程登陆)、sftp(安全文件传输)等其他的应用程序。<br>2. 配置SSH的原因<br>Hadoop名称节点(NameNode)需要启动集群中所有机器的Hadoop守护进程，这个过 程需要通过SSH登录来实现。Hadoop并没有提供SSH输入密码登录的形式，因此，为 了能够顺利登录每台机器，需要将所有机器配置为名称节点可以无密码登录它们。<br>3. 切换登录用户以hadoop登录（可选）<br>4. 更新（可选）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424160220932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>5.（1） 配置SSH的无密码登录<br>安装openssh-server( 通常Linux系统会默认安装openssh的客户端软件openssh-client)，所以需要自己安装一下服务端。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424160338720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（2）输入 cd .ssh目录下，如果没有.ssh文件 输入 ssh localhost生成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~<span class="regexp">/.ssh/</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424160506102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（3）生成秘钥</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424161052855.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（4）将Master中生成的密钥加入授权（authorized_keys）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub                     # 查看生成的公钥</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424161237794.png" alt="在这里插入图片描述"></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys    # 加入授权</span><br><span class="line">chmod 600 authorized_keys    # 修改文件权限，如果不修改文件权限那么其它用户就能查看该授权</span><br></pre></td></tr></table></figure>
+<p>（5）完成后，直接键入“ssh localhost”，能无密码登录即可<br><img src="https://img-blog.csdnimg.cn/20200424161602988.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（6）键入“exit”退出，到此SSH无密码登录配置就成功了<br><img src="https://img-blog.csdnimg.cn/20200424161840649.png" alt="在这里插入图片描述"></p>
+<h2 id="安装Java环境"><a href="#安装Java环境" class="headerlink" title="安装Java环境"></a>安装Java环境</h2><p>1.Windows与Ubuntu数据共享（可将Windows下的文件进行共享，可选）<br>（1）Windows系统操作<br><img src="https://img-blog.csdnimg.cn/20200424162546196.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424163213304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）Ubuntu系统操作（基于VirtualBox）<br><img src="https://img-blog.csdnimg.cn/2020042416364019.png" alt="在这里插入图片描述"><br>点击设备-&gt;安装增强功能<br><img src="https://img-blog.csdnimg.cn/20200424164357941.png" alt="在这里插入图片描述"><br>输入密码后直接回车<br><img src="https://img-blog.csdnimg.cn/20200424164620510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>再次点击设备-&gt;共享文件夹-&gt;共享文件夹<br><img src="https://img-blog.csdnimg.cn/20200424164924757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424164955489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>桌面会增加两个盘，点击sf_盘输入密码，即可将改文件夹中的内容复制到ubuntu下（小编复制到了下载文件夹中）<br><img src="https://img-blog.csdnimg.cn/20200424165844732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424165935594.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>移动完成后，即可删除两个盘<br><img src="https://img-blog.csdnimg.cn/20200424165534548.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424165615342.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>2.在Ubuntu将jdk移动到我们新建的java目录下（没建的新建一个就是），到此传输文件成功，可以开始配置Java环境了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir java</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424170451980.png" alt="在这里插入图片描述"><br>注意根据自己的jdk版本号以及当前用户名执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /home/hadoop/下载/jdk-8u221-linux-x64.tar.gz usr/java</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424172022330.png" alt="在这里插入图片描述"></p>
+<p>在java目录中，使用sudo tar命令解压jdk文件，解压成功后，java目录中会有对应的目录文件存在</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf jdk-8u221-linux-x64.tar.gz</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424171625868.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>3.配置java环境<br>（1） 使用命令“sudo gedit ~/.bashrc”打开配置文件，在末尾添加以下几行文字，注意自己的jdk版本号。<br><img src="https://img-blog.csdnimg.cn/20200424172509382.png" alt="在这里插入图片描述"><br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> #set java env</span><br><span class="line"><span class="keyword">export</span> JAVA_HOME=<span class="regexp">/usr/</span>lib/jdk/jdk1<span class="number">.8</span><span class="number">.0_221</span></span><br><span class="line"><span class="keyword">export</span> JRE_HOME=$&#123;JAVA_HOME&#125;/jre    </span><br><span class="line"><span class="keyword">export</span> CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib    </span><br><span class="line"><span class="keyword">export</span> PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200424172636127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（2）使用命令“source ~/.bashrc”使环境变量生效（关闭配置文件并在当前目录即/usr/java目录下执行）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>（3）配置软连接，软连接相当于windows系统中的快捷键，部分软件可能会从/usr/bin目录下查找Java，因此添加该软连接防止其他软件查找不到的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/java  java  /usr/java/jdk1<span class="number">.8</span><span class="number">.0_221</span>/bin/java <span class="number">300</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/javac  javac  /usr/java/jdk1<span class="number">.8</span><span class="number">.0_221</span>/bin/javac <span class="number">300</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424173219925.png" alt="在这里插入图片描述"><br>（4）测试java是否安装成功</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424173430996.png" alt="在这里插入图片描述"></p>
+<h1 id="单机模式以及伪分布式模式的搭建"><a href="#单机模式以及伪分布式模式的搭建" class="headerlink" title="单机模式以及伪分布式模式的搭建"></a>单机模式以及伪分布式模式的搭建</h1><h2 id="Hadoop单机安装配置"><a href="#Hadoop单机安装配置" class="headerlink" title="Hadoop单机安装配置"></a>Hadoop单机安装配置</h2><p>1.将我们下载的Hadoop解压到 /usr/local/ 中（与解压jdk类似）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar zxvf /home/hadoop/下载/hadoop-<span class="number">3.2</span><span class="number">.1</span>.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
+<p>2.利用cd /usr/local/ 命令切换操作空间，将文件夹名改为hadoop</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv ./hadoop-<span class="number">3.2</span><span class="number">.1</span>/ ./hadoop</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424173949652.png" alt="在这里插入图片描述"></p>
+<p>3.修改文件权限</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R hadoop:hadoop ./hadoop</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R 当前用户名 /usr/local/hadoop</span><br></pre></td></tr></table></figure>
+<p>4.修改配置文件<br>Hadoop 解压后，在hadoop目录下的etc/hadoop/hadoop-env.sh文件中添加如下的 Java环境信息（可加到文本末尾，注意jdk版本号）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> JAVA_HOME=<span class="regexp">/usr/</span>java/jdk1<span class="number">.8</span><span class="number">.0_221</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424175418218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424175508866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>5.然后，保存hadoop-env.sh文件，即完成单机模式的Hadoop基本安装。测试Hadoop是否安装成功，如出现如下图所示的版本信息，即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hadoop/ version</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424181301239.png" alt="在这里插入图片描述"></p>
+<p>6.默认情况下，单机模式的Hadoop以Java进程的方式运行，可依次运行如下命令进行进一步测试。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir input</span><br><span class="line">sudo cp etc/hadoop<span class="comment">/*.xml input</span></span><br></pre></td></tr></table></figure>
+<p>7.执行下列命令，运行MapReduce程序，完成测试计算。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">3.2</span><span class="number">.1</span>.jar grep input output <span class="string">&#x27;dfs[a-z.]+&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424181535235.png" alt="在这里插入图片描述"><br>8. 执行下列命令，查看计算结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat output<span class="comment">/*</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424182249798.png" alt="在这里插入图片描述"><br>hadoop目录下，会有input和output两个新建的文件，output中有上述程序 的运算结果，到此hadoop单机安装配置成功。</p>
+<h2 id="Hadoop伪分布式安装配置"><a href="#Hadoop伪分布式安装配置" class="headerlink" title="Hadoop伪分布式安装配置"></a>Hadoop伪分布式安装配置</h2><p>1.Hadoop伪分布式安装配置<br>（1）Hadoop可以在单节点上以伪分布式的方式运行，Hadoop进程以分 离的 Java 进程来运行，节点既作为 NameNode 也作为 DataNode， 同时，读取的是 HDFS 中的文件<br>（2）Hadoop的配置文件位于/usr/local/hadoop/etc/hadoop/中，伪分布式 需要修改2个配置文件 core-site.xml 和 hdfs-site.xml<br>（3）Hadoop的配置文件是xml格式，每个配置以声明property的name 和 value 的方式来实现<br>hadoop目录认识<br>2.hadoop下的目录<br>（1）修改配置文件之前，先看一下hadoop下的目录：<br>bin：hadoop最基本的管理脚本和使用脚本所在目录，这些脚本是sbin目录下管理脚本的基础实现，用户可以直接使用这些脚本管理和使用hadoop<br>（2）etc：配置文件存放的目录，包括core-site.xml,hdfs-site.xml,mapred-site.xml等从hadoop1.x继承而来的配置文件和yarn-site.xml等hadoop2.x新增的配置文件<br>（3）include：对外提供的编程库头文件（具体动态库和静态库在lib目录中，这些头文件军事用c++定义的，通常用于c++程序访问hdfs或者编写mapreduce程序）<br>（4）Lib：该目录包含了hadoop对外提供的才变成动态库和静态库，与include目录中的头文件结合使用<br>（5）libexec：各个服务对应的shell配置文件所在目录，可用于配置日志输出目录、启动参数等信息<br>（6）sbin：hadoop管理脚本所在目录，主要包含hdfs和yarn中各类服务的启动、关闭脚本<br>（7）share：hadoop各个模块编译后的jar包所在目录。<br>3. 修改配置文件 core-site.xml</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> &lt;configuration&gt; </span><br><span class="line">   &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; </span><br><span class="line">        &lt;value&gt;file:<span class="regexp">/usr/</span>local/hadoop/tmp&lt;/value&gt;</span><br><span class="line">        &lt;description&gt;Abase <span class="keyword">for</span> other temporary directories.&lt;/description&gt;</span><br><span class="line">   &lt;/property&gt; </span><br><span class="line">   &lt;property&gt;</span><br><span class="line">     &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">     &lt;value&gt;hdfs:<span class="comment">//localhost:9000&lt;/value&gt; </span></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424184150636.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424184253403.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>（1）hadoop.tmp.dir表示存放临时数据的目录，即包括NameNode的数据，也包 括DataNode的数据。该路径任意指定，只要实际存在该文件夹即可<br>（2）name为fs.defaultFS的值，表示hdfs路径的逻辑名称</p>
+<p> 4.修改配置文件 hdfs-site.xml</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">   &lt;property&gt;</span><br><span class="line">       &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;<span class="number">1</span>&lt;/value&gt; </span><br><span class="line">   &lt;/property&gt; </span><br><span class="line">   &lt;property&gt;</span><br><span class="line">       &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;file:<span class="regexp">/usr/</span>local/hadoop/tmp/dfs/name&lt;/value&gt; </span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">       &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;         </span><br><span class="line">       &lt;value&gt;file:<span class="regexp">/usr/</span>local/hadoop/tmp/dfs/data&lt;/value&gt;</span><br><span class="line">   &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424184525331.png" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200424184438375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>（1）dfs.replication表示副本的数量，伪分布式要设置为1<br>（2）dfs.namenode.name.dir表示本地磁盘目录，是存储fsimage文件的地方<br>（3）dfs.datanode.data.dir表示本地磁盘目录，HDFS数据存放block的地方</p>
+<p>5.至此，配置完毕，但是还不能启动，要对hdfs先进行格式化。类似以前的软盘，使用前要先格式化,执行如下命令，看到日志信息，即格式化成功。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/hdfs namenode -format</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200424184701640.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200424184745555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>6.在我们name目录(这个目录是我们自己配置的时候指定的)下也会出现映像文件（fsimage），用于将数据持久化 。<br><img src="https://img-blog.csdnimg.cn/20200424184932703.png" alt="在这里插入图片描述"><br>7.启动hadoop<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-dfs.sh</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200424185327146.png" alt="在这里插入图片描述"></p>
+<p>8.安装jps<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openjdk-<span class="number">11</span>-jdk-headless</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200424185503726.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>9.安装好之后jps检查角色如果有多个角色，就启动成功。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200424185539932.png" alt="在这里插入图片描述"></p>
+<p>10.浏览器访问localhost:9870<br><img src="https://img-blog.csdnimg.cn/20200424185929899.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>11.关闭hadoop（使用完毕后一定要关闭，否则相当容易崩）<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sbin/stop-dfs.sh</span><br></pre></td></tr></table></figure><br><img src="https://img-blog.csdnimg.cn/20200424185611130.png" alt="在这里插入图片描述"></p>
+<p><strong>Ubuntu下搭建Hadoop的单机模式以及伪分布式模式到此就结束了。小编经过疯狂的踩坑，熟悉了linux操作系统的部分命令。各位可爱们在搭建过程中一定要注意细节哦，配置文件这些可以不用自己手敲，通过复制代码，保存在文本文件中，再利用Windows和Ubuntu数据共享，很快就可以节省时间啦。最后，如果博客中有问题，希望各位大神们指点迷津。</strong></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Ubuntu下搭建HBase的单机模式以及伪分布式模式
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -242,8 +452,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

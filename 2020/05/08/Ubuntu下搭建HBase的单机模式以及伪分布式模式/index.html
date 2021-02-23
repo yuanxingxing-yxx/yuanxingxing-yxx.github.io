@@ -6,15 +6,47 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Hexo</title>
+  <title>Ubuntu下搭建HBase的单机模式以及伪分布式模式 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="HBase环境的安装HBase压缩文件解压将下载文件夹中的HBase压缩文件解压(可选,Windows与ubuntu的文件共享可参考上一篇文章：Ubuntu下搭建Hadoop的单机模式以及伪分布式模式) 1sudo tar -xzvf ~&#x2F;下载&#x2F;hbase-2.2.0-bin.tar.gz 为了方便使用将hbase解压后的文件更名。 文件授予权限为文件授予权限，避免遇到文件无法创建等问题，注意更改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu下搭建HBase的单机模式以及伪分布式模式">
+<meta property="og:url" content="http://example.com/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="HBase环境的安装HBase压缩文件解压将下载文件夹中的HBase压缩文件解压(可选,Windows与ubuntu的文件共享可参考上一篇文章：Ubuntu下搭建Hadoop的单机模式以及伪分布式模式) 1sudo tar -xzvf ~&#x2F;下载&#x2F;hbase-2.2.0-bin.tar.gz 为了方便使用将hbase解压后的文件更名。 文件授予权限为文件授予权限，避免遇到文件无法创建等问题，注意更改">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507200052379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507200253551.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507200947931.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507201952296.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507201809660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507202855848.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507202656305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507204311515.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507204413683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507204742235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507205205811.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507205352247.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507205727471.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507205843356.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507220432318.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507220544435.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507220450728.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507222142373.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507222009494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507221614184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507222205164.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507232126521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/202005072237120.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200508002801344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507232946825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507234809858.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200507234831438.png">
+<meta property="article:published_time" content="2020-05-07T16:01:12.000Z">
+<meta property="article:modified_time" content="2021-02-23T05:53:25.061Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200507200052379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,76 +182,211 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Ubuntu下搭建HBase的单机模式以及伪分布式模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Ubuntu下搭建HBase的单机模式以及伪分布式模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
+
+        
+        <a href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
   	<time datetime="2020-05-07T16:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/">Ubuntu下搭建HBase的单机模式以及伪分布式模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="HBase环境的安装"><a href="#HBase环境的安装" class="headerlink" title="HBase环境的安装"></a>HBase环境的安装</h1><h2 id="HBase压缩文件解压"><a href="#HBase压缩文件解压" class="headerlink" title="HBase压缩文件解压"></a>HBase压缩文件解压</h2><p>将下载文件夹中的HBase压缩文件解压(可选,Windows与ubuntu的文件共享可参考上一篇文章：Ubuntu下搭建Hadoop的单机模式以及伪分布式模式)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -xzvf ~<span class="regexp">/下载/</span>hbase-<span class="number">2.2</span><span class="number">.0</span>-bin.tar.gz</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507200052379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>为了方便使用将hbase解压后的文件更名。<br><img src="https://img-blog.csdnimg.cn/20200507200253551.png" alt="在这里插入图片描述"></p>
+<h2 id="文件授予权限"><a href="#文件授予权限" class="headerlink" title="文件授予权限"></a>文件授予权限</h2><p>为文件授予权限，避免遇到文件无法创建等问题，注意更改为当前用户名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R hadoop ./hbase</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507200947931.png" alt="在这里插入图片描述"></p>
+<h1 id="HBase单机模式配置"><a href="#HBase单机模式配置" class="headerlink" title="HBase单机模式配置"></a>HBase单机模式配置</h1><h2 id="修改hbase-env-sh配置文件"><a href="#修改hbase-env-sh配置文件" class="headerlink" title="修改hbase-env.sh配置文件"></a>修改hbase-env.sh配置文件</h2><p>修改conf文件夹中hbase-env.sh配置文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit hbase-env.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507201952296.png" alt="在这里插入图片描述"><br>因为hbase是基于Zookeeper进行协调管理，则删除下图中的‘#’<br><img src="https://img-blog.csdnimg.cn/20200507201809660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>删除此处‘#’，并查看java目录下的jdk版本<br><img src="https://img-blog.csdnimg.cn/20200507202855848.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200507202656305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="修改hbase-site-xml配置文件"><a href="#修改hbase-site-xml配置文件" class="headerlink" title="修改hbase-site.xml配置文件"></a>修改hbase-site.xml配置文件</h2><p>修改conf文件夹中hbase-site.xml配置文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit hbase-site.xml</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507204311515.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200507204413683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="验证HBase版本号"><a href="#验证HBase版本号" class="headerlink" title="验证HBase版本号"></a>验证HBase版本号</h2><p>切换到bin目录下，验证hbase版本号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hbase version</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507204742235.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="启动HBase数据库系统"><a href="#启动HBase数据库系统" class="headerlink" title="启动HBase数据库系统"></a>启动HBase数据库系统</h2><p>bin目录下，启动HBase数据库系统</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start-hbase.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507205205811.png" alt="在这里插入图片描述"></p>
+<h2 id="jps查看进程"><a href="#jps查看进程" class="headerlink" title="jps查看进程"></a>jps查看进程</h2><p>jps查看进程，检查hbase是否启动，若包括HMaster则启动成功</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507205352247.png" alt="在这里插入图片描述"></p>
+<h2 id="启动HBase命令行模式"><a href="#启动HBase命令行模式" class="headerlink" title="启动HBase命令行模式"></a>启动HBase命令行模式</h2><p>启动HBase数据库命令行模式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hbase shell</span><br></pre></td></tr></table></figure>
+<p>启动成功标志如下<br><img src="https://img-blog.csdnimg.cn/20200507205727471.png" alt="在这里插入图片描述"></p>
+<h2 id="查看HBase命令行模式下的进程"><a href="#查看HBase命令行模式下的进程" class="headerlink" title="查看HBase命令行模式下的进程"></a>查看HBase命令行模式下的进程</h2><p>此时，打开另一个终端查看进程，main代表启动hbase终端，即可进行创建表等基本操作<br><img src="https://img-blog.csdnimg.cn/20200507205843356.png" alt="在这里插入图片描述"></p>
+<h2 id="关闭HBase命令行模式"><a href="#关闭HBase命令行模式" class="headerlink" title="关闭HBase命令行模式"></a>关闭HBase命令行模式</h2><p>关闭HBase数据库命令行模式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507220432318.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200507220544435.png" alt="在这里插入图片描述"></p>
+<h2 id="关闭hbase数据库"><a href="#关闭hbase数据库" class="headerlink" title="关闭hbase数据库"></a>关闭hbase数据库</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./stop-hbase.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507220450728.png" alt="在这里插入图片描述"></p>
+<h1 id="HBase伪分布式配置"><a href="#HBase伪分布式配置" class="headerlink" title="HBase伪分布式配置"></a>HBase伪分布式配置</h1><h2 id="配置hbase-env-sh文件"><a href="#配置hbase-env-sh文件" class="headerlink" title="配置hbase-env.sh文件"></a>配置hbase-env.sh文件</h2><p>修改conf目录下的hbase-env.sh文件<br>使用gedit编辑器打开/usr/local/hbase/conf/hbase-env.sh，命令如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /usr/local/hbase/conf/hbase-env.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507222142373.png" alt="在这里插入图片描述"><br>修改配置文件如下三处后保存<br><img src="https://img-blog.csdnimg.cn/20200507222009494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200507221614184.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="配置hbase-site-xml文件"><a href="#配置hbase-site-xml文件" class="headerlink" title="配置hbase-site.xml文件"></a>配置hbase-site.xml文件</h2><p>修改conf文件夹中hbase-site.xml配置文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /usr/local/hbase/conf/hbase-site.xml</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507222205164.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hbase.rootdir&lt;/name&gt; </span><br><span class="line">        &lt;value&gt;hdfs:<span class="comment">//localhost:9000/hbase&lt;/value&gt; </span></span><br><span class="line">   &lt;/property&gt;</span><br><span class="line">   &lt;property&gt;</span><br><span class="line">       &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;</span><br><span class="line">       &lt;value&gt;<span class="literal">true</span>&lt;/value&gt; </span><br><span class="line">   &lt;/property&gt; </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507232126521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="启动运行HBase"><a href="#启动运行HBase" class="headerlink" title="启动运行HBase"></a>启动运行HBase</h2><p>首先登陆ssh，由于搭建hadoop时已经设置了无密码登陆，因此这里不需要密码，然后切换到/usr/local/hadoop目录下，启动Hadoop，让HDFS进入运行状态，从而可以为HBase存储数据，具体命令如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh localhost</span><br><span class="line">cd /usr/local/hadoop</span><br><span class="line">./sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+<p>输入命令jps，如果能看到NameNode，DataNode，SecondNode这三个进程，则表示已经成功启动Hadoop<br><img src="https://img-blog.csdnimg.cn/202005072237120.png" alt="在这里插入图片描述"><br>然后启动HBase，命令如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hbase/bin</span><br><span class="line">./start-hbase.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200508002801344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="启动HBase-Shell模式"><a href="#启动HBase-Shell模式" class="headerlink" title="启动HBase Shell模式"></a>启动HBase Shell模式</h2><p>进入HBase Shell模式，命令如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hbase shell</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507232946825.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="关闭HBase-Shell模式"><a href="#关闭HBase-Shell模式" class="headerlink" title="关闭HBase Shell模式"></a>关闭HBase Shell模式</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507234809858.png" alt="在这里插入图片描述"></p>
+<h2 id="关闭HBase"><a href="#关闭HBase" class="headerlink" title="关闭HBase"></a>关闭HBase</h2><p>在/usr/local/hbase/bin目录下，可以使用如下命令停止HBase运行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./stop-hbase.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200507234831438.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">./sbin/stop-dfs.sh</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>如果在操作HBase的过程中发生错误，可以查看{HBASE_HOME}目录(即/usr/local/hbase)下的logs子目录中的日志文件，来寻找可能的错误原因。</p>
+<p>最后需要注意的是，启动关闭Hadoop和HBase的顺序一定是：启动Hadoop-&gt;启动HBase-&gt;关闭HBase-&gt;关闭Hadoop。</p>
+<p><strong>Ubuntu下搭建HBase的单机模式以及伪分布式模式到此就结束了。小编经过疯狂的踩坑，熟悉了linux操作系统的部分命令。各位可爱们在搭建过程中一定要注意细节哦，如果博客中有问题，欢迎各位大神们指点迷津。</strong></p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-04-24T11:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Ubuntu下搭建Hadoop的单机模式以及伪分布式模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/">Ubuntu下搭建Hadoop的单机模式以及伪分布式模式</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -242,8 +409,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
