@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>Scala语言搭建编程环境 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+  <meta name="description" content="sbt的下载与配置sbt的下载sbt官网下载链接: https:&#x2F;&#x2F;www.scala-sbt.org&#x2F;download.html.https:&#x2F;&#x2F;www.scala-sbt.org&#x2F;download.html选择sbt的版本，下载的文件会被默认保存在”&#x2F;home&#x2F;hadoop&#x2F;下载”目录中。下载完成后，下载目录下便会有相应的压缩文件 sbt的配置将压缩包解压到&#x2F;usr&#x2F;local目录下，会自动生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scala语言搭建编程环境">
+<meta property="og:url" content="http://example.com/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="sbt的下载与配置sbt的下载sbt官网下载链接: https:&#x2F;&#x2F;www.scala-sbt.org&#x2F;download.html.https:&#x2F;&#x2F;www.scala-sbt.org&#x2F;download.html选择sbt的版本，下载的文件会被默认保存在”&#x2F;home&#x2F;hadoop&#x2F;下载”目录中。下载完成后，下载目录下便会有相应的压缩文件 sbt的配置将压缩包解压到&#x2F;usr&#x2F;local目录下，会自动生">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524183711819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524183827776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524165441172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524165240392.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524165322146.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524165401111.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020052416512276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524185545154.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200524185335725.png">
+<meta property="article:published_time" content="2020-05-25T14:59:18.000Z">
+<meta property="article:modified_time" content="2021-02-23T05:58:11.191Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200524183711819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,265 +164,178 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Scala语言搭建编程环境" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/" class="archive-article-date">
-  	<time datetime="2020-05-25T15:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/">ubuntu搭建jupyter notebook以及jupyter与spark的链接</a>
+    <h1 class="article-title" itemprop="name">
+      Scala语言搭建编程环境
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="archive-article-date">
+        
+        <a href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="archive-article-date">
   	<time datetime="2020-05-25T14:59:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/">Scala语言搭建编程环境</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sbt的下载与配置"><a href="#sbt的下载与配置" class="headerlink" title="sbt的下载与配置"></a>sbt的下载与配置</h1><h2 id="sbt的下载"><a href="#sbt的下载" class="headerlink" title="sbt的下载"></a>sbt的下载</h2><p>sbt官网下载链接: <a target="_blank" rel="noopener" href="https://www.scala-sbt.org/download.html">https://www.scala-sbt.org/download.html</a>.<br><a target="_blank" rel="noopener" href="https://www.scala-sbt.org/download.html">https://www.scala-sbt.org/download.html</a><br>选择sbt的版本，下载的文件会被默认保存在”/home/hadoop/下载”目录中。<br><img src="https://img-blog.csdnimg.cn/20200524183711819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200524183827776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下载完成后，下载目录下便会有相应的压缩文件<br><img src="https://img-blog.csdnimg.cn/20200524165441172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="sbt的配置"><a href="#sbt的配置" class="headerlink" title="sbt的配置"></a>sbt的配置</h2><p>将压缩包解压到/usr/local目录下，会自动生成名为sbt的文件夹</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~<span class="regexp">/下载/</span>sbt-<span class="number">1.3</span><span class="number">.0</span>.tgz -C /usr/local</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524165240392.png" alt="在这里插入图片描述"><br>为该文件夹授予权限</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R hadoop /usr/local/sbt</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524165322146.png" alt="在这里插入图片描述"><br>将bin目录下的sbt-launch.jar文件和bin目录下的sbt文件复制到当前目录下（当然也可以自己手动复制啦）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp ./bin/sbt-launch.jar ./</span><br><span class="line">cp ./bin/sbt ./</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524165401111.png" alt="在这里插入图片描述"><br>在sbt脚本文件中，添加以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">SBT_OPTS&#x3D;&quot;-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize&#x3D;256M&quot;</span><br><span class="line">java $SBT_OPTS -jar &#96;dirname $0&#96;&#x2F;sbt-launch.jar &quot;$@&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052416512276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">为sbt脚本文件增加可以执行权限</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x ./sbt</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524185545154.png" alt="在这里插入图片描述"><br><strong>运行如下命令，检验sbt是否可用</strong><br>确保计算机处于联网状态，首次运行该命令，会长时间处于“Getting org.scala-sbt sbt 1.2.8…” 的下载状态，要耐心等待。如果长时间没有进度（大概半小时左右），可能是网络问题导致安装失败，需要重新安装。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sbt sbt-version</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524185335725.png" alt="在这里插入图片描述"><br><strong>至此，Scala语言搭建编程环境就结束了，如果博客中有问题，欢迎各位大神们指点迷津</strong></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  	<time datetime="2020-05-24T06:06:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ubuntu搭建jupyter notebook以及jupyter与spark的链接
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spark计算环境的搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/">Spark计算环境的搭建</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2020-05-24T05:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/">使用命令./bin/run-example SparkPi,验证Spark安装是否成功错-/usr/local/spark/bin/spark-class-行 71- /usr/lib/jdk/jdk1.8.0_221/bin/java-没有那个文件或目录</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-05-21T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">HBase Shell数据库操作</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-05-16T06:40:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/">HDFS分布式文件系统的Java数据访问方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/" class="archive-article-date">
-  	<time datetime="2020-05-14T13:35:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/">MapReduce分布式计算</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-05-07T16:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/">Ubuntu下搭建HBase的单机模式以及伪分布式模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-04-24T11:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/">Ubuntu下搭建Hadoop的单机模式以及伪分布式模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -431,8 +358,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

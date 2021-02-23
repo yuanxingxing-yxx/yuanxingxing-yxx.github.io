@@ -6,15 +6,52 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>HDFS分布式文件系统的Java数据访问方法 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+  <meta name="description" content="准备工作Ubuntu下安装IDEA1.下载地址: https:&#x2F;&#x2F;www.jetbrains.com&#x2F;idea&#x2F;download&#x2F;#section&#x3D;linux.小编选择的版本是ideaIU-2019.3.3.tar.gz 2.查看下载首先切换到下载目录要注意该处的hadoop，为当前用户名汉化版代码如下： 1cd &#x2F;home&#x2F;hadoop&#x2F;下载 未汉化版： 1cd &#x2F;home&#x2F;hadoop&#x2F;Dow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDFS分布式文件系统的Java数据访问方法">
+<meta property="og:url" content="http://example.com/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="准备工作Ubuntu下安装IDEA1.下载地址: https:&#x2F;&#x2F;www.jetbrains.com&#x2F;idea&#x2F;download&#x2F;#section&#x3D;linux.小编选择的版本是ideaIU-2019.3.3.tar.gz 2.查看下载首先切换到下载目录要注意该处的hadoop，为当前用户名汉化版代码如下： 1cd &#x2F;home&#x2F;hadoop&#x2F;下载 未汉化版： 1cd &#x2F;home&#x2F;hadoop&#x2F;Dow">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516095712393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516101421932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516103519112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516133244382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516133519220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516133452752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516103728542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516110759644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516111833107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516132945721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516133244382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516133519220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516133452752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516134109733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516134233547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020051613511116.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516135908686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516135548696.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516135757793.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020051614061055.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141411208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516142109571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141809349.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516143153687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516142806336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200516143844115.png">
+<meta property="article:published_time" content="2020-05-16T06:40:33.000Z">
+<meta property="article:modified_time" content="2021-02-23T05:54:40.566Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200516095712393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,265 +187,204 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-HDFS分布式文件系统的Java数据访问方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/" class="archive-article-date">
-  	<time datetime="2020-05-25T15:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/">ubuntu搭建jupyter notebook以及jupyter与spark的链接</a>
+    <h1 class="article-title" itemprop="name">
+      HDFS分布式文件系统的Java数据访问方法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="archive-article-date">
-  	<time datetime="2020-05-25T14:59:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/">Scala语言搭建编程环境</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  	<time datetime="2020-05-24T06:06:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/">Spark计算环境的搭建</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2020-05-24T05:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/">使用命令./bin/run-example SparkPi,验证Spark安装是否成功错-/usr/local/spark/bin/spark-class-行 71- /usr/lib/jdk/jdk1.8.0_221/bin/java-没有那个文件或目录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2020-05-21T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">HBase Shell数据库操作</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/" class="archive-article-date">
+        
+        <a href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/" class="archive-article-date">
   	<time datetime="2020-05-16T06:40:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/">HDFS分布式文件系统的Java数据访问方法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="Ubuntu下安装IDEA"><a href="#Ubuntu下安装IDEA" class="headerlink" title="Ubuntu下安装IDEA"></a>Ubuntu下安装IDEA</h2><p>1.下载地址: <a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download/#section=linux">https://www.jetbrains.com/idea/download/#section=linux</a>.<br>小编选择的版本是ideaIU-2019.3.3.tar.gz</p>
+<p>2.查看下载<br>首先切换到下载目录<br><strong>要注意该处的hadoop，为当前用户名</strong><br>汉化版代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/hadoop/下载</span><br></pre></td></tr></table></figure>
+<p>未汉化版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/hadoop/Downloads</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516095712393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.将压缩包解压到/opt目录下<br><strong>注意压缩包的版本号</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf ideaIU-<span class="number">2019.3</span><span class="number">.3</span>.tar.gz -C /opt</span><br></pre></td></tr></table></figure>
+<p>4.进入安装位置并启动IDEA<br><img src="https://img-blog.csdnimg.cn/20200516101421932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开相应IDEA的bin目录，idea.sh是IDEA的启动文件，我们可以通过终端运行idea.sh文件启动 IDEA</p>
+<p>5.测试安装是否成功<br>(1)新建工程<br><img src="https://img-blog.csdnimg.cn/20200516103519112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出新建工程的界面选择Java，接着选择SDK，一般默认即可，点击“Next”按钮，<br><img src="https://img-blog.csdnimg.cn/20200516133244382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出的选择创建项目的模板页面，不做任何操作，直接点击“Next”按钮。<br><img src="https://img-blog.csdnimg.cn/20200516133519220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入项目名称，点击Finish，就完成了创建新项目的工作，小编所建的项目名称为：project1。<br><img src="https://img-blog.csdnimg.cn/20200516133452752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>(2)新建java class<br><img src="https://img-blog.csdnimg.cn/20200516103728542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>(3)测试运行<br><img src="https://img-blog.csdnimg.cn/20200516110759644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200516111833107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>若成功输出相应的结果，则证明安装成功。<br><strong>到此Ubuntu下安装IDEA就完成了</strong></p>
+<h2 id="相应包的导入"><a href="#相应包的导入" class="headerlink" title="相应包的导入"></a>相应包的导入</h2><p>1.在idea新建一个Java Project，并import需要的Hadoop JAR包<br><img src="https://img-blog.csdnimg.cn/20200516132945721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出新建工程的界面选择Java，接着选择SDK，一般默认即可，点击“Next”按钮，<br><img src="https://img-blog.csdnimg.cn/20200516133244382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出的选择创建项目的模板页面，不做任何操作，直接点击“Next”按钮。<br><img src="https://img-blog.csdnimg.cn/20200516133519220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入项目名称，点击Finish，就完成了创建新项目的工作，小编所建的项目名称为：Java Project。<br><img src="https://img-blog.csdnimg.cn/20200516133452752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.添加jar包，和Eclipse一样，要给项目添加相关依赖包，否则会出错。点击Idea的File菜单，然后点击“Project Structure”菜单<br><img src="https://img-blog.csdnimg.cn/20200516134109733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>依次点击Modules和Dependencies，然后选择“+”号<br><img src="https://img-blog.csdnimg.cn/20200516134233547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.选择hadoop的包，我用得是hadoop3.2.1。把下面的依赖包都加入到工程中，否则会出现某个类找不到的错误。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>) /usr/local/hadoop/share/hadoop/common目录下的hadoop-common-<span class="number">3.2</span><span class="number">.1</span>.jar和hadoop-nfs-<span class="number">3.2</span><span class="number">.1</span>.jar。</span><br><span class="line">(<span class="number">2</span>) /usr/local/hadoop/share/hadoop/common/lib目录下的所有jar包。</span><br><span class="line">(<span class="number">3</span>) /usr/local/hadoop/share/hadoop/hdfs目录下的hadoop-hdfs-<span class="number">3.2</span><span class="number">.1</span>.jar和hadoop-hdfs-nfs-<span class="number">3.2</span><span class="number">.1</span>.jar。</span><br><span class="line">(<span class="number">4</span>) /usr/local/hadoop/share/hadoop/hdfs/lib目录下的所有jar包。</span><br><span class="line">(<span class="number">5</span>) /usr/local/hadoop/share/hadoop/hdfs目录下的 hadoop-hdfs-client-<span class="number">3.2</span><span class="number">.1</span>.jar包</span><br></pre></td></tr></table></figure>
+<p>若不添加(5)对应的hadoop-hdfs-client-3.2.1.jar包，可能会报如下错误：<br><img src="https://img-blog.csdnimg.cn/2020051613511116.png" alt="在这里插入图片描述"><br>4.将导入的包apply<br><img src="https://img-blog.csdnimg.cn/20200516135908686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>启动Hadoop</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">./sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516135548696.png" alt="在这里插入图片描述"><br><strong>查看进程</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516135757793.png" alt="在这里插入图片描述"></p>
+<h1 id="从本地拷贝文件到HDFS"><a href="#从本地拷贝文件到HDFS" class="headerlink" title="从本地拷贝文件到HDFS"></a>从本地拷贝文件到HDFS</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.在当前用户的桌面创建一个1.txt,作为传输文件进行测试。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">FileCopyFromLocal</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="built_in">String</span> source = <span class="string">&quot;/home/hadoop/桌面/1.txt&quot;</span>;</span><br><span class="line">		<span class="built_in">String</span> dest = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream <span class="keyword">in</span> = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(source));</span><br><span class="line">			Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">			FileSystem fs = FileSystem.get(URI.create(dest),conf);</span><br><span class="line">			OutputStream out = fs.create(<span class="keyword">new</span> Path(dest));</span><br><span class="line">			IOUtils.copyBytes(<span class="keyword">in</span>,out,<span class="number">4096</span>,<span class="literal">true</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;success&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>警告信息可忽略</strong></p>
+<p>成功拷贝则运行输出success<br><img src="https://img-blog.csdnimg.cn/2020051614061055.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="判断HDFS目录中对应文件是否存在"><a href="#判断HDFS目录中对应文件是否存在" class="headerlink" title="判断HDFS目录中对应文件是否存在"></a>判断HDFS目录中对应文件是否存在</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看1.txt,作为传输文件是否存在</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">HDFSFileIfExist</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="built_in">String</span> fileName = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>;</span><br><span class="line">			Configuration conf = <span class="keyword">new</span>  Configuration();</span><br><span class="line">			conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>,<span class="string">&quot;hdfs://localhost:9000&quot;</span>);</span><br><span class="line">			conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>,<span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">			FileSystem fs = FileSystem.get(conf);</span><br><span class="line">			<span class="keyword">if</span>(fs.exists(<span class="keyword">new</span> Path(fileName)))&#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;exists&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;not exists&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>存在则运行输出exists!<br><img src="https://img-blog.csdnimg.cn/20200516141411208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="列出HDFS目录中相应文件信息"><a href="#列出HDFS目录中相应文件信息" class="headerlink" title="列出HDFS目录中相应文件信息"></a>列出HDFS目录中相应文件信息</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看/user/hadoop/input目录内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ListHDFSFiles</span> </span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="built_in">String</span> uri = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input&quot;</span>;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			FileSystem fs = FileSystem.get(<span class="keyword">new</span> URI(uri), conf);</span><br><span class="line">			Path path = <span class="keyword">new</span> Path(uri);</span><br><span class="line">			FileStatus[] status = fs.listStatus(path);</span><br><span class="line">			<span class="keyword">for</span> (FileStatus s : status) &#123;</span><br><span class="line">				System.out.println(s.getPath().getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; 	</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显示如下：<br><img src="https://img-blog.csdnimg.cn/20200516142109571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="读取HDFS目录中相应文件内容"><a href="#读取HDFS目录中相应文件内容" class="headerlink" title="读取HDFS目录中相应文件内容"></a>读取HDFS目录中相应文件内容</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看input目录下1.txt内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FsUrlStreamHandlerFactory;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ReadHDFSFileContents</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">		conf.set(<span class="string">&quot;fs.defaultFs&quot;</span>,<span class="string">&quot;hdfs://localhost:9000&quot;</span>);</span><br><span class="line">		conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>,<span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			URL.setURLStreamHandlerFactory(<span class="keyword">new</span> FsUrlStreamHandlerFactory());</span><br><span class="line">			InputStream <span class="keyword">in</span> = <span class="keyword">new</span> URL(<span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>).openStream();</span><br><span class="line">			IOUtils.copyBytes(<span class="keyword">in</span>,System.out,<span class="number">4096</span>,<span class="literal">true</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出文件内容<br><img src="https://img-blog.csdnimg.cn/20200516141809349.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="读取HDFS相应文件的BLOCK信息"><a href="#读取HDFS相应文件的BLOCK信息" class="headerlink" title="读取HDFS相应文件的BLOCK信息"></a>读取HDFS相应文件的BLOCK信息</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看input目录下1.txt所对应的block信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.BlockLocation;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">LocationFile</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="built_in">String</span> uri = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span>  Configuration();</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			FileSystem fs = FileSystem.get(<span class="keyword">new</span> URI(uri),conf);</span><br><span class="line">			Path path = <span class="keyword">new</span> Path(uri);</span><br><span class="line">			FileStatus fileStatus = fs.getFileStatus(path);</span><br><span class="line">			BlockLocation blockLocation[] = fs.getFileBlockLocations(fileStatus,<span class="number">0</span>,fileStatus.getLen());</span><br><span class="line">			<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;blockLocation.length;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">String</span>[] hosts = blockLocation[i].getHosts();</span><br><span class="line">				System.out.println(<span class="string">&quot;block_&quot;</span>+i+<span class="string">&quot;_location:&quot;</span>+hosts[<span class="number">0</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出block信息则成功<br><img src="https://img-blog.csdnimg.cn/20200516143153687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="删除HDFS目录中相应文件"><a href="#删除HDFS目录中相应文件" class="headerlink" title="删除HDFS目录中相应文件"></a>删除HDFS目录中相应文件</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.删除input目录下1.txt文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">DeleteHDFSFile</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">		conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>,<span class="string">&quot;hdfs://localhost:9000&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			FileSystem fs = FileSystem.get(conf);</span><br><span class="line">			boolean deleteOnExit = fs.deleteOnExit(<span class="keyword">new</span> Path(<span class="string">&quot;/user/hadoop/input/1.txt&quot;</span>));</span><br><span class="line">			System.out.println(deleteOnExit);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除成功则返回ture<br><img src="https://img-blog.csdnimg.cn/20200516142806336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>关闭hadoop</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./sbin/stop-dfs.sh</span><br><span class="line">jps     <span class="comment">//查看进程</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516143844115.png" alt="在这里插入图片描述"></p>
+<p><strong>至此HDFS分布式文件系统的JAVA数据访问方法，就结束了。各位可爱们在实验过程中一定要注意细节哦，如果博客中有问题，欢迎各位大神们指点迷津。</strong></p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/" class="archive-article-date">
-  	<time datetime="2020-05-14T13:35:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          HBase Shell数据库操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MapReduce分布式计算</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/">MapReduce分布式计算</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-05-07T16:01:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/08/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHBase%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/">Ubuntu下搭建HBase的单机模式以及伪分布式模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-04-24T11:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/24/Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BAHadoop%E7%9A%84%E5%8D%95%E6%9C%BA%E6%A8%A1%E5%BC%8F%E4%BB%A5%E5%8F%8A%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E6%A8%A1%E5%BC%8F/">Ubuntu下搭建Hadoop的单机模式以及伪分布式模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -431,8 +407,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

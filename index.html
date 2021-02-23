@@ -152,6 +152,643 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ubuntu搭建jupyter notebook以及jupyter与spark的链接" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/">ubuntu搭建jupyter notebook以及jupyter与spark的链接</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/" class="archive-article-date">
+  	<time datetime="2020-05-25T15:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="搭建jupyter-notebook"><a href="#搭建jupyter-notebook" class="headerlink" title="搭建jupyter notebook"></a>搭建jupyter notebook</h1><h2 id="安装python3"><a href="#安装python3" class="headerlink" title="安装python3"></a>安装python3</h2><p>更新软件包</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232400663.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>安装 python3，默认 python3 将安装最新版本，一般Ubuntu都自带python在 /usr/local目录下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232426566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>安装python第三方安装工具：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python3-pip</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052523242127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>查看python3版本信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -V</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232439131.png" alt="在这里插入图片描述"></p>
+<h2 id="安装jupyter-notebook"><a href="#安装jupyter-notebook" class="headerlink" title="安装jupyter notebook"></a>安装jupyter notebook</h2><p>下载jupyter notebook</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install jupyter -i https:<span class="comment">//pypi.tuna.tsinghua.edu.cn/simple</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232453239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>运行 jupyter notebook</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232614451.png" alt="在这里插入图片描述"><br>使用find命令找出 jupyter</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find -name jupyter</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232621859.png" alt="在这里插入图片描述"><br>将上述路径添加到环境变件中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232510772.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> PATH=~<span class="regexp">/.local/</span>bin:$&#123;PATH&#125;</span><br></pre></td></tr></table></figure>
+<p>使环境变量生效</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232547905.png" alt="在这里插入图片描述"><br>运行 jupyter notebook</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525232555179.png" alt="在这里插入图片描述"><br>Jupyter Notebook是基于网页的用于交互计算的应用程序。可以直接在网页上新建文件进行编写<br><img src="https://img-blog.csdnimg.cn/20200525232759831.png" alt="在这里插入图片描述"></p>
+<h1 id="jupyter与spark的链接"><a href="#jupyter与spark的链接" class="headerlink" title="jupyter与spark的链接"></a>jupyter与spark的链接</h1><h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>运行pyspark </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark/bin</span><br><span class="line">./pyspark</span><br></pre></td></tr></table></figure>
+<p>直接运行pyspark可能会出现以下错误：<br>因为没有配置Spark python的环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyspark:行 45: python: 未找到命令</span><br><span class="line"> env: &quot;python&quot;: 没有那个文件或目录</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525233544156.png" alt="在这里插入图片描述"><br>解决办法：<br>添加python相关环境变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-<span class="number">0.10</span><span class="number">.7</span>-src.zip:$PYTHONPATH</span><br><span class="line"><span class="keyword">export</span> PYSPARK_PYTHON=python3</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525234034316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200525234344123.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>注意：py4j-0.10.7-src.zip要到/usr/local/spark/python/lib目录查看是否是这个名称。不同版本的py4j的名称会有差别。</p>
+<p>保存后，让环境变量生效</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>再次运行pyspark </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pyspark</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525234430306.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">退出pyspark </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit()</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525235904129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="链接jupyter与spark"><a href="#链接jupyter与spark" class="headerlink" title="链接jupyter与spark"></a>链接jupyter与spark</h2><p>安装 findspark</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install findspark</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200525234713661.png" alt="在这里插入图片描述"><br>测试 jupyter 是否成功连接 spark</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> findspark</span><br><span class="line">findspark.init(&quot;/usr/local/spark&quot;) # 指明SPARK_HOME</span><br><span class="line"><span class="keyword">import</span> pyspark</span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext, SparkConf</span><br><span class="line">print(<span class="string">&quot;hello spark&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>成功链接，则会输出 “hello spark”<br><img src="https://img-blog.csdnimg.cn/20200525234656208.png" alt="在这里插入图片描述"><br><strong>至此，ubuntu搭建jupyter notebook以及jupyter与spark的链接就结束了，如果博客中有问题，欢迎各位大神们指点迷津</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/25/ubuntu%E6%90%AD%E5%BB%BAjupyter%20notebook%E4%BB%A5%E5%8F%8Ajupyter%E4%B8%8Espark%E7%9A%84%E9%93%BE%E6%8E%A5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Scala语言搭建编程环境" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/">Scala语言搭建编程环境</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/" class="archive-article-date">
+  	<time datetime="2020-05-25T14:59:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="sbt的下载与配置"><a href="#sbt的下载与配置" class="headerlink" title="sbt的下载与配置"></a>sbt的下载与配置</h1><h2 id="sbt的下载"><a href="#sbt的下载" class="headerlink" title="sbt的下载"></a>sbt的下载</h2><p>sbt官网下载链接: <a target="_blank" rel="noopener" href="https://www.scala-sbt.org/download.html">https://www.scala-sbt.org/download.html</a>.<br><a target="_blank" rel="noopener" href="https://www.scala-sbt.org/download.html">https://www.scala-sbt.org/download.html</a><br>选择sbt的版本，下载的文件会被默认保存在”/home/hadoop/下载”目录中。<br><img src="https://img-blog.csdnimg.cn/20200524183711819.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200524183827776.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>下载完成后，下载目录下便会有相应的压缩文件<br><img src="https://img-blog.csdnimg.cn/20200524165441172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="sbt的配置"><a href="#sbt的配置" class="headerlink" title="sbt的配置"></a>sbt的配置</h2><p>将压缩包解压到/usr/local目录下，会自动生成名为sbt的文件夹</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~<span class="regexp">/下载/</span>sbt-<span class="number">1.3</span><span class="number">.0</span>.tgz -C /usr/local</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524165240392.png" alt="在这里插入图片描述"><br>为该文件夹授予权限</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R hadoop /usr/local/sbt</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524165322146.png" alt="在这里插入图片描述"><br>将bin目录下的sbt-launch.jar文件和bin目录下的sbt文件复制到当前目录下（当然也可以自己手动复制啦）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp ./bin/sbt-launch.jar ./</span><br><span class="line">cp ./bin/sbt ./</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524165401111.png" alt="在这里插入图片描述"><br>在sbt脚本文件中，添加以下内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">SBT_OPTS&#x3D;&quot;-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize&#x3D;256M&quot;</span><br><span class="line">java $SBT_OPTS -jar &#96;dirname $0&#96;&#x2F;sbt-launch.jar &quot;$@&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052416512276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">为sbt脚本文件增加可以执行权限</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x ./sbt</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524185545154.png" alt="在这里插入图片描述"><br><strong>运行如下命令，检验sbt是否可用</strong><br>确保计算机处于联网状态，首次运行该命令，会长时间处于“Getting org.scala-sbt sbt 1.2.8…” 的下载状态，要耐心等待。如果长时间没有进度（大概半小时左右），可能是网络问题导致安装失败，需要重新安装。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sbt sbt-version</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524185335725.png" alt="在这里插入图片描述"><br><strong>至此，Scala语言搭建编程环境就结束了，如果博客中有问题，欢迎各位大神们指点迷津</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/25/Scala%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spark计算环境的搭建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/">Spark计算环境的搭建</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/" class="archive-article-date">
+  	<time datetime="2020-05-24T06:06:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spark的安装与配置"><a href="#Spark的安装与配置" class="headerlink" title="Spark的安装与配置"></a>Spark的安装与配置</h1><h2 id="Spark的下载"><a href="#Spark的下载" class="headerlink" title="Spark的下载"></a>Spark的下载</h2><p>Spark官网下载地址: <a target="_blank" rel="noopener" href="http://spark.apache.org/downloads.html">http://spark.apache.org/downloads.html</a>.</p>
+<p>因为前期已经配置了Hadopp，所以在Choose a package type后面需要选择Pre-build with user-provided Hadoop，然后单击Download Spark后面的without-hadoop压缩包即可，下载的文件会被默认保存在”/home/hadoop/下载”目录中。<br><img src="https://img-blog.csdnimg.cn/20200524112344509.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>选择推荐的镜像即可下载<br><img src="https://img-blog.csdnimg.cn/20200524120208303.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf ~<span class="regexp">/下载/</span>spark-<span class="number">2.4</span><span class="number">.5</span>-bin-without-hadoop.tgz -C /usr/local/</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524120533861.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>为了方便目录的查看等，将解压后的文件重命名为spark</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">sudo mv ./spark-<span class="number">2.4</span><span class="number">.5</span>-bin-without-hadoop/ ./spark</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052412075775.png" alt="在这里插入图片描述"><br>为文件授予权限，避免遇到文件无法创建等问题，注意更改为当前用户名</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R hadoop:hadoop ./spark    # hadoop是当前登录Linux系统的用户名</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052412090489.png" alt="在这里插入图片描述"></p>
+<h2 id="Spark的配置"><a href="#Spark的配置" class="headerlink" title="Spark的配置"></a>Spark的配置</h2><p><strong>修改Spark的配置文件spark-env.sh</strong><br>安装文件解压后，需要修改Spark的配置文件spark-env.sh，首先可以先复制一份Spark安装文件自带的配置文件模板，命令如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524121502343.png" alt="在这里插入图片描述"><br>使用gedit编辑器打开spark-env.sh文件进行编辑，在该文件的第一行添加一下配置信息：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524121424931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>验证Spark安装是否成功报错：/usr/local/spark/bin/spark-class: 行 71: /usr/lib/jdk/jdk1.8.0_221/bin/java: 没有那个文件或目录（详情可见小编的上一篇博客: <a target="_blank" rel="noopener" href="https://blog.csdn.net/yxx201125/article/details/106313758">here</a>.）</strong><br><strong>解决方式：</strong><br>jdk找不到路径问题，/usr/local/spark/conf/spark-env.sh文件中添加如下的 Java环境信息（可加到文本末尾，注意jdk版本号），直接配置修改文件spark-env中export （导入）jdk的路径即可。<br><img src="https://img-blog.csdnimg.cn/20200524132842924.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> JAVA_HOME=<span class="regexp">/usr/</span>java/jdk1<span class="number">.8</span><span class="number">.0_221</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524132922848.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>有了上述的配置信息后，Spark就可以把数据存储到Hadoop分布式文件系统HDFS中，也可以从HDFS中读取数据。如果没有配置上面的信息，Spark就只能读写本地数据，无法读写HDFS中的数据。</p>
+<p>配置完成后，就可以直接使用Spark，不需要像Hadoop那样运行启动命令，通过运行Spark自带的实例，可以验证Spark是否安装成功，命令如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">./bin/run-example SparkPi</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524133559961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>执行时会输出很多屏幕信息，不容易找到最终的输出结果，为了从大量的输出信息中快速找到我们想要的执行结果，可以通过grep命令进行过滤。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">&quot;Pi is roughly&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052413433030.png" alt="在这里插入图片描述"><br><strong>启动Spark shell</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">./bin/spark-shell</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052413483146.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200524134928208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在Spark shell中进行测试</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scala&gt; <span class="number">7</span>*<span class="number">7</span>+<span class="number">8</span></span><br><span class="line">res0: Int = <span class="number">57</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524135207958.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>关闭shell</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scala&gt;:quit</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524135345251.png" alt="在这里插入图片描述"><br><strong>至此，Spark计算环境的搭建就结束了，如果博客中有问题，欢迎各位大神们指点迷津</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/24/Spark%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E7%9A%84%E6%90%AD%E5%BB%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-验证Spark安装是否成功报错__usr_lib_jdk_jdk1.8.0_221_bin_java_ 没有那个文件或目录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/">使用命令./bin/run-example SparkPi,验证Spark安装是否成功错-/usr/local/spark/bin/spark-class-行 71- /usr/lib/jdk/jdk1.8.0_221/bin/java-没有那个文件或目录</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-05-24T05:30:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>报错情况如下</strong><br><img src="https://img-blog.csdnimg.cn/20200524131349968.png" alt="在这里插入图片描述"><br><strong>测试java是否安装成功</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524132500658.png" alt="在这里插入图片描述"><br><strong>检查java配置文件是否正确</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524132040244.png" alt="在这里插入图片描述"><br>检查该文件中对应的java路径是否正确</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#set java env</span><br><span class="line"><span class="keyword">export</span> JAVA_HOME=<span class="regexp">/usr/</span>lib/jdk/jdk1<span class="number">.8</span><span class="number">.0_221</span></span><br><span class="line"><span class="keyword">export</span> JRE_HOME=$&#123;JAVA_HOME&#125;/jre    </span><br><span class="line"><span class="keyword">export</span> CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib    </span><br><span class="line"><span class="keyword">export</span> PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
+<p>若不正确，则修改配置文件，并执行如下的命令使配置文件生效。（正确则忽略此步）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524132156976.png" alt="在这里插入图片描述"></p>
+<p><strong>配置软连接</strong><br>软连接相当于windows系统中的快捷键，部分软件可能会从/usr/bin目录下查找Java，因此添加该软连接防止其他软件查找不到的情况。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/java  java  /usr/java/jdk1<span class="number">.8</span><span class="number">.0_221</span>/bin/java <span class="number">300</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/javac  javac  /usr/java/jdk1<span class="number">.8</span><span class="number">.0_221</span>/bin/javac <span class="number">300</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524132412341.png" alt="在这里插入图片描述"><br>再次尝试运行Spark自带的实例，若成功，则到此就结束，反之进行下一步。</p>
+<p><strong>配置修改文件spark-env中export （导入）jdk的路径</strong><br>jdk找不到路径问题，/usr/local/spark/conf/spark-env.sh文件中添加如下的 Java环境信息（可加到文本末尾，注意jdk版本号），直接配置修改文件spark-env中export （导入）jdk的路径即可。<br><img src="https://img-blog.csdnimg.cn/20200524132842924.png" alt="在这里插入图片描述"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> JAVA_HOME=<span class="regexp">/usr/</span>java/jdk1<span class="number">.8</span><span class="number">.0_221</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524132922848.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>再次进行验证</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/run-example SparkPi</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200524133244939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>到此，该问题就解决啦，Spark可以正常使用了</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/24/%E9%AA%8C%E8%AF%81Spark%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F%E6%8A%A5%E9%94%99__usr_lib_jdk_jdk1.8.0_221_bin_java_%20%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B8%AA%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-HBase Shell数据库操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">HBase Shell数据库操作</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/" class="archive-article-date">
+  	<time datetime="2020-05-21T11:41:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据库表创建"><a href="#数据库表创建" class="headerlink" title="数据库表创建"></a>数据库表创建</h1><p><img src="https://img-blog.csdnimg.cn/20200521191101815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>创建学生表（Student）</strong> </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin/hbase shell</span><br><span class="line">create <span class="string">&#x27;Student&#x27;</span>,<span class="string">&#x27;S_ID&#x27;</span>,<span class="string">&#x27;S_Name&#x27;</span>,<span class="string">&#x27;S_Sex&#x27;</span>,<span class="string">&#x27;S_Age&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521191548721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>创建课程表（Course）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create <span class="string">&#x27;Course&#x27;</span>,<span class="string">&#x27;C_ID&#x27;</span>,<span class="string">&#x27;C_Name&#x27;</span>,<span class="string">&#x27;C_Credit&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521191641252.png" alt="在这里插入图片描述"><br><strong>创建选课表（Selected_Course）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create <span class="string">&#x27;Selected_Course&#x27;</span>,<span class="string">&#x27;SC_ID&#x27;</span>,<span class="string">&#x27;C_ID&#x27;</span>,<span class="string">&#x27;SC_Score&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521191717813.png" alt="在这里插入图片描述"><br><strong>查看已创建的表</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521191747909.png" alt="在这里插入图片描述"></p>
+<h1 id="HBase-Shell-数据访问操作"><a href="#HBase-Shell-数据访问操作" class="headerlink" title="HBase Shell 数据访问操作"></a>HBase Shell 数据访问操作</h1><p><strong>学生表（Student）添加3条记录</strong><br>注意：每一行的数据，需要每一列添加，否则会报错<br><img src="https://img-blog.csdnimg.cn/20200521192003332.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>显示学生表（Student）记录</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan <span class="string">&#x27;Student&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020052119201977.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>课程表（Course）添加3条记录</strong><br><img src="https://img-blog.csdnimg.cn/20200521192051652.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>显示课程表（Course）记录</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan <span class="string">&#x27;Course&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521192109735.png" alt="在这里插入图片描述"></p>
+<p><strong>选课表（Selected_Course）添加4条记录</strong><br><img src="https://img-blog.csdnimg.cn/20200521192127997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>显示选课表（Selected_Course）记录</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan <span class="string">&#x27;Selected_Course&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521192148802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="HBASE-数据访问程序设计"><a href="#HBASE-数据访问程序设计" class="headerlink" title="HBASE 数据访问程序设计"></a>HBASE 数据访问程序设计</h1><p><strong>HBase Shell命令显示学生表（Student）记录</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan <span class="string">&#x27;Student&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521192252693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>HBase Shell命令从课程表中查询（get）任意一条数据</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get <span class="string">&#x27;Course&#x27;</span>,<span class="string">&#x27;c0001&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521192307316.png" alt="在这里插入图片描述"><br><strong>使用HBase Shell命令将选课表（Selected_Course）删除</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">disable <span class="string">&#x27;Selected_Course&#x27;</span></span><br><span class="line">drop <span class="string">&#x27;Selected_Course&#x27;</span></span><br><span class="line">list</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200521192319552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>HBase Shell数据库操作到此就结束了。如果博客中有问题，欢迎各位大神们指点迷津鸭。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/21/HBase%20Shell%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-HDFS分布式文件系统的Java数据访问方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/">HDFS分布式文件系统的Java数据访问方法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-05-16T06:40:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="Ubuntu下安装IDEA"><a href="#Ubuntu下安装IDEA" class="headerlink" title="Ubuntu下安装IDEA"></a>Ubuntu下安装IDEA</h2><p>1.下载地址: <a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/download/#section=linux">https://www.jetbrains.com/idea/download/#section=linux</a>.<br>小编选择的版本是ideaIU-2019.3.3.tar.gz</p>
+<p>2.查看下载<br>首先切换到下载目录<br><strong>要注意该处的hadoop，为当前用户名</strong><br>汉化版代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/hadoop/下载</span><br></pre></td></tr></table></figure>
+<p>未汉化版：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /home/hadoop/Downloads</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516095712393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.将压缩包解压到/opt目录下<br><strong>注意压缩包的版本号</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf ideaIU-<span class="number">2019.3</span><span class="number">.3</span>.tar.gz -C /opt</span><br></pre></td></tr></table></figure>
+<p>4.进入安装位置并启动IDEA<br><img src="https://img-blog.csdnimg.cn/20200516101421932.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>打开相应IDEA的bin目录，idea.sh是IDEA的启动文件，我们可以通过终端运行idea.sh文件启动 IDEA</p>
+<p>5.测试安装是否成功<br>(1)新建工程<br><img src="https://img-blog.csdnimg.cn/20200516103519112.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出新建工程的界面选择Java，接着选择SDK，一般默认即可，点击“Next”按钮，<br><img src="https://img-blog.csdnimg.cn/20200516133244382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出的选择创建项目的模板页面，不做任何操作，直接点击“Next”按钮。<br><img src="https://img-blog.csdnimg.cn/20200516133519220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入项目名称，点击Finish，就完成了创建新项目的工作，小编所建的项目名称为：project1。<br><img src="https://img-blog.csdnimg.cn/20200516133452752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>(2)新建java class<br><img src="https://img-blog.csdnimg.cn/20200516103728542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>(3)测试运行<br><img src="https://img-blog.csdnimg.cn/20200516110759644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200516111833107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>若成功输出相应的结果，则证明安装成功。<br><strong>到此Ubuntu下安装IDEA就完成了</strong></p>
+<h2 id="相应包的导入"><a href="#相应包的导入" class="headerlink" title="相应包的导入"></a>相应包的导入</h2><p>1.在idea新建一个Java Project，并import需要的Hadoop JAR包<br><img src="https://img-blog.csdnimg.cn/20200516132945721.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出新建工程的界面选择Java，接着选择SDK，一般默认即可，点击“Next”按钮，<br><img src="https://img-blog.csdnimg.cn/20200516133244382.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在弹出的选择创建项目的模板页面，不做任何操作，直接点击“Next”按钮。<br><img src="https://img-blog.csdnimg.cn/20200516133519220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>输入项目名称，点击Finish，就完成了创建新项目的工作，小编所建的项目名称为：Java Project。<br><img src="https://img-blog.csdnimg.cn/20200516133452752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.添加jar包，和Eclipse一样，要给项目添加相关依赖包，否则会出错。点击Idea的File菜单，然后点击“Project Structure”菜单<br><img src="https://img-blog.csdnimg.cn/20200516134109733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>依次点击Modules和Dependencies，然后选择“+”号<br><img src="https://img-blog.csdnimg.cn/20200516134233547.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.选择hadoop的包，我用得是hadoop3.2.1。把下面的依赖包都加入到工程中，否则会出现某个类找不到的错误。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>) /usr/local/hadoop/share/hadoop/common目录下的hadoop-common-<span class="number">3.2</span><span class="number">.1</span>.jar和hadoop-nfs-<span class="number">3.2</span><span class="number">.1</span>.jar。</span><br><span class="line">(<span class="number">2</span>) /usr/local/hadoop/share/hadoop/common/lib目录下的所有jar包。</span><br><span class="line">(<span class="number">3</span>) /usr/local/hadoop/share/hadoop/hdfs目录下的hadoop-hdfs-<span class="number">3.2</span><span class="number">.1</span>.jar和hadoop-hdfs-nfs-<span class="number">3.2</span><span class="number">.1</span>.jar。</span><br><span class="line">(<span class="number">4</span>) /usr/local/hadoop/share/hadoop/hdfs/lib目录下的所有jar包。</span><br><span class="line">(<span class="number">5</span>) /usr/local/hadoop/share/hadoop/hdfs目录下的 hadoop-hdfs-client-<span class="number">3.2</span><span class="number">.1</span>.jar包</span><br></pre></td></tr></table></figure>
+<p>若不添加(5)对应的hadoop-hdfs-client-3.2.1.jar包，可能会报如下错误：<br><img src="https://img-blog.csdnimg.cn/2020051613511116.png" alt="在这里插入图片描述"><br>4.将导入的包apply<br><img src="https://img-blog.csdnimg.cn/20200516135908686.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><strong>启动Hadoop</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">./sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516135548696.png" alt="在这里插入图片描述"><br><strong>查看进程</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516135757793.png" alt="在这里插入图片描述"></p>
+<h1 id="从本地拷贝文件到HDFS"><a href="#从本地拷贝文件到HDFS" class="headerlink" title="从本地拷贝文件到HDFS"></a>从本地拷贝文件到HDFS</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.在当前用户的桌面创建一个1.txt,作为传输文件进行测试。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">FileCopyFromLocal</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="built_in">String</span> source = <span class="string">&quot;/home/hadoop/桌面/1.txt&quot;</span>;</span><br><span class="line">		<span class="built_in">String</span> dest = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			InputStream <span class="keyword">in</span> = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(source));</span><br><span class="line">			Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">			FileSystem fs = FileSystem.get(URI.create(dest),conf);</span><br><span class="line">			OutputStream out = fs.create(<span class="keyword">new</span> Path(dest));</span><br><span class="line">			IOUtils.copyBytes(<span class="keyword">in</span>,out,<span class="number">4096</span>,<span class="literal">true</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;success&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>警告信息可忽略</strong></p>
+<p>成功拷贝则运行输出success<br><img src="https://img-blog.csdnimg.cn/2020051614061055.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="判断HDFS目录中对应文件是否存在"><a href="#判断HDFS目录中对应文件是否存在" class="headerlink" title="判断HDFS目录中对应文件是否存在"></a>判断HDFS目录中对应文件是否存在</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看1.txt,作为传输文件是否存在</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">HDFSFileIfExist</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="built_in">String</span> fileName = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>;</span><br><span class="line">			Configuration conf = <span class="keyword">new</span>  Configuration();</span><br><span class="line">			conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>,<span class="string">&quot;hdfs://localhost:9000&quot;</span>);</span><br><span class="line">			conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>,<span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">			FileSystem fs = FileSystem.get(conf);</span><br><span class="line">			<span class="keyword">if</span>(fs.exists(<span class="keyword">new</span> Path(fileName)))&#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;exists&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">&quot;not exists&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>存在则运行输出exists!<br><img src="https://img-blog.csdnimg.cn/20200516141411208.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="列出HDFS目录中相应文件信息"><a href="#列出HDFS目录中相应文件信息" class="headerlink" title="列出HDFS目录中相应文件信息"></a>列出HDFS目录中相应文件信息</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看/user/hadoop/input目录内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ListHDFSFiles</span> </span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="built_in">String</span> uri = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input&quot;</span>;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			FileSystem fs = FileSystem.get(<span class="keyword">new</span> URI(uri), conf);</span><br><span class="line">			Path path = <span class="keyword">new</span> Path(uri);</span><br><span class="line">			FileStatus[] status = fs.listStatus(path);</span><br><span class="line">			<span class="keyword">for</span> (FileStatus s : status) &#123;</span><br><span class="line">				System.out.println(s.getPath().getName());</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; 	</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显示如下：<br><img src="https://img-blog.csdnimg.cn/20200516142109571.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="读取HDFS目录中相应文件内容"><a href="#读取HDFS目录中相应文件内容" class="headerlink" title="读取HDFS目录中相应文件内容"></a>读取HDFS目录中相应文件内容</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看input目录下1.txt内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IOUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FsUrlStreamHandlerFactory;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">ReadHDFSFileContents</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">		conf.set(<span class="string">&quot;fs.defaultFs&quot;</span>,<span class="string">&quot;hdfs://localhost:9000&quot;</span>);</span><br><span class="line">		conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>,<span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			URL.setURLStreamHandlerFactory(<span class="keyword">new</span> FsUrlStreamHandlerFactory());</span><br><span class="line">			InputStream <span class="keyword">in</span> = <span class="keyword">new</span> URL(<span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>).openStream();</span><br><span class="line">			IOUtils.copyBytes(<span class="keyword">in</span>,System.out,<span class="number">4096</span>,<span class="literal">true</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出文件内容<br><img src="https://img-blog.csdnimg.cn/20200516141809349.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="读取HDFS相应文件的BLOCK信息"><a href="#读取HDFS相应文件的BLOCK信息" class="headerlink" title="读取HDFS相应文件的BLOCK信息"></a>读取HDFS相应文件的BLOCK信息</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看input目录下1.txt所对应的block信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.BlockLocation;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">LocationFile</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		<span class="built_in">String</span> uri = <span class="string">&quot;hdfs://localhost:9000/user/hadoop/input/1.txt&quot;</span>;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span>  Configuration();</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			FileSystem fs = FileSystem.get(<span class="keyword">new</span> URI(uri),conf);</span><br><span class="line">			Path path = <span class="keyword">new</span> Path(uri);</span><br><span class="line">			FileStatus fileStatus = fs.getFileStatus(path);</span><br><span class="line">			BlockLocation blockLocation[] = fs.getFileBlockLocations(fileStatus,<span class="number">0</span>,fileStatus.getLen());</span><br><span class="line">			<span class="keyword">for</span>(int i=<span class="number">0</span>;i&lt;blockLocation.length;i++)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">String</span>[] hosts = blockLocation[i].getHosts();</span><br><span class="line">				System.out.println(<span class="string">&quot;block_&quot;</span>+i+<span class="string">&quot;_location:&quot;</span>+hosts[<span class="number">0</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出block信息则成功<br><img src="https://img-blog.csdnimg.cn/20200516143153687.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="删除HDFS目录中相应文件"><a href="#删除HDFS目录中相应文件" class="headerlink" title="删除HDFS目录中相应文件"></a>删除HDFS目录中相应文件</h1><p>1.新建java class<br><img src="https://img-blog.csdnimg.cn/20200516141047111.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.删除input目录下1.txt文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">DeleteHDFSFile</span></span>&#123;</span><br><span class="line">	public <span class="keyword">static</span> <span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"><span class="built_in">String</span>[] args</span>)</span> &#123;</span><br><span class="line">		Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">		conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>,<span class="string">&quot;hdfs://localhost:9000&quot;</span>);</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			FileSystem fs = FileSystem.get(conf);</span><br><span class="line">			boolean deleteOnExit = fs.deleteOnExit(<span class="keyword">new</span> Path(<span class="string">&quot;/user/hadoop/input/1.txt&quot;</span>));</span><br><span class="line">			System.out.println(deleteOnExit);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>删除成功则返回ture<br><img src="https://img-blog.csdnimg.cn/20200516142806336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>关闭hadoop</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./sbin/stop-dfs.sh</span><br><span class="line">jps     <span class="comment">//查看进程</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200516143844115.png" alt="在这里插入图片描述"></p>
+<p><strong>至此HDFS分布式文件系统的JAVA数据访问方法，就结束了。各位可爱们在实验过程中一定要注意细节哦，如果博客中有问题，欢迎各位大神们指点迷津。</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/16/HDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84Java%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MapReduce分布式计算实例(pi程序、wordcount程序、grep程序)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/">MapReduce分布式计算</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/" class="archive-article-date">
+  	<time datetime="2020-05-14T13:35:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="MapReduce分布式计算前期准备"><a href="#MapReduce分布式计算前期准备" class="headerlink" title="MapReduce分布式计算前期准备"></a>MapReduce分布式计算前期准备</h1><p>1.启动Hadoop</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">./sbin/start-dfs.sh</span><br><span class="line">jps</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514193856906.png" alt="在这里插入图片描述"><br>2.在桌面新建word.txt文件，并使用gedit编辑器在其中添加英文单词</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ./桌面</span><br><span class="line">touch word.txt</span><br><span class="line">gedit word.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514194108523.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020051419415277.png" alt="在这里插入图片描述"><br>3.在hdfs目录下创建input1和input2文件夹</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -ls</span><br><span class="line">./bin/hdfs dfs -mkdir -p /user/hadoop/input1</span><br><span class="line">./bin/hdfs dfs -mkdir -p /user/hadoop/input2</span><br><span class="line">./bin/hdfs dfs -ls</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/2020051419473046.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>4.将桌面上的word.txt文件拷贝到input1目录下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -put /home/hadoop/桌面/word.txt input1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514195209568.png" alt="在这里插入图片描述"><br>5.将/usr/local/hadoop/etc/hadoop目录下的所有.xml文件拷贝到input2目录下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -put ./etc/hadoop<span class="comment">/*.xml input2</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514195439883.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>6.检查拷贝是否成功</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -ls input1</span><br><span class="line">./bin/hdfs dfs -ls input2</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514195711380.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="MapReduce的圆周率计算方法"><a href="#MapReduce的圆周率计算方法" class="headerlink" title="MapReduce的圆周率计算方法"></a>MapReduce的圆周率计算方法</h1><p>1.查看mapreduce目录所在位置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/share/hadoop/mapreduce</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514200353138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.切换目录，通过使用hadoop-mapreduce-examples-3.2.1.jar<br>包计算pi的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">3.2</span><span class="number">.1</span>.jar pi <span class="number">5</span> <span class="number">500</span>   <span class="comment">//pi + map数量 + reduce数量</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514200838866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">3.查看相应的计算结果<br><img src="https://img-blog.csdnimg.cn/20200514200808447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="MapReduce的Wordcount计算方法"><a href="#MapReduce的Wordcount计算方法" class="headerlink" title="MapReduce的Wordcount计算方法"></a>MapReduce的Wordcount计算方法</h1><p>1.查看input1目录下word.txt文件内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -cat input1/word.txt</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514205036751.png" alt="在这里插入图片描述"><br>2.通过使用hadoop-mapreduce-examples-3.2.1.jar<br>包统计单词个数，并保存于output1目录下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">3.2</span><span class="number">.1</span>.jar wordcount input1 output1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514205006237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>3.查看MapReduce的Wordcount计算结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -ls</span><br><span class="line">./bin/hdfs dfs -ls output1</span><br><span class="line">./bin/hdfs dfs -cat output1/part-r-<span class="number">00000</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514204839964.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="MapReduce的正则表达式匹配计算方法"><a href="#MapReduce的正则表达式匹配计算方法" class="headerlink" title="MapReduce的正则表达式匹配计算方法"></a>MapReduce的正则表达式匹配计算方法</h1><p>1.使用上传在input2目录中的XML文件，并使用MapReduce相应计算程序，完成正则表达式计算，统计该.xml文本中满足’dfs[a-z.]+ ’匹配规则的字符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="number">3.2</span><span class="number">.1</span>.jar grep input2 output2 <span class="string">&#x27;dfs[a-z.]+ &#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514205553127.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l4eDIwMTEyNQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>2.查看output2目录是否创建成功</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -ls</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514205644145.png" alt="在这里插入图片描述"><br>3.查看output2目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -ls output2</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514205709867.png" alt="在这里插入图片描述"><br>4.查看MapReduce的grep正则表达式匹配计算结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/hdfs dfs -cat output2/part-r-<span class="number">00000</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514205728783.png" alt="在这里插入图片描述"><br><strong>关闭hdfs</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./sbin/stop-dfs.sh</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200514210205138.png" alt="在这里插入图片描述"><br><strong>本次MapReduce分布式计算实例：pi程序、wordcount程序、grep程序演示到此就结束了，各位可爱们在实验过程中一定要注意细节哦，如果博客中有问题，欢迎各位大神们指点迷津</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/MapReduce%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%AE%9E%E4%BE%8B(pi%E7%A8%8B%E5%BA%8F%E3%80%81wordcount%E7%A8%8B%E5%BA%8F%E3%80%81grep%E7%A8%8B%E5%BA%8F)/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Ubuntu下搭建HBase的单机模式以及伪分布式模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
